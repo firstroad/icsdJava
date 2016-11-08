@@ -10,7 +10,7 @@ public class ex01 {
     }
     private static void displayAll(){
         for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();) {
-            cars.get(it.next()).display();
+            cars.get(it.next()).toString();
         }
     }
     private static void add(){
