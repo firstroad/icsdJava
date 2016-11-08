@@ -13,7 +13,7 @@ public class car {
         this.price=price;
         this.color=color;
     }
-    public void display(){
+    public void toString(){
         System.out.println(brand+" "+model+" "+hp+" "+cc+" "+price+" "+color);
     }
 }
