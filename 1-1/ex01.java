@@ -10,7 +10,7 @@ public class ex01 {
     }
     private static void displayAll(){
         for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();) {
-            cars.get(it.next()).toString();
+            System.out.println(cars.get(it.next()).toString());
         }
     }
     private static void add(){
@@ -34,9 +34,12 @@ public class ex01 {
         System.out.println("Εισάγετε χρώμα: ");
         String color = in.next();
         
-        int r;
-        do{ r = (int)(Math.random()*999+1); } while(cars.get(String.valueOf(r)) != null );
+        String randomCode;
+        do{ 
+            int r = (int)(Math.random()*1000);
+            randomCode = String.valueOf(r/100%10) + String.valueOf(r/10%10) + String.valueOf(r%10);
+        } while(cars.get(randomCode) != null );
         
-        cars.put(String.valueOf(r),new car(brand,model,hp,cc,price,color));
+        cars.put(randomCode,new car(brand,model,hp,cc,price,color));
     }
 }
