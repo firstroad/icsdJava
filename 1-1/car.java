@@ -9,6 +9,7 @@ public class car {
     private final String color;
     public String getBrand() { return this.brand; }
     int getHP() { return this.hp; }
+    int getPrice() { return this.price; }
     car(String brand, String model, int hp, int cc, int price, String color){
         brand=ex01.toTitleCase(brand);
         this.brand=brand;
