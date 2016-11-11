@@ -15,8 +15,6 @@ public class ex01 {
         cars.put("753",new car("FIAT","Punto",45,1100,500,"red"));
         cars.put("666",new car("Subaru","Impreza WRX STI 1999",300,2500,50000,"Blue"));
         cars.put("359",new car("Toyota","Starlet",43,1000,5000,"Gray"));
-        power("max","Toyota");
-        displayAll();
     }
     private static void add(){
         Scanner in = new Scanner(System.in);
@@ -80,20 +78,32 @@ public class ex01 {
             System.out.println("To autokinhto me th mikroterh ippodunamh einai:\n"+minID+" "+cars.get(minID).toString());
         else System.out.println("Lathos parametros, eisagete min h max gia mikroterh h megaluterh ippodunamh antistoixa");
     }
+    public static void power(String maxORmin){
+        power(maxORmin,null);
+    }
+    public static int brandCars(String brand){
+        brand=toTitleCase(brand);
+        int counter=0;
+        for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();) {
+            if(cars.get(it.next()).getBrand().equals(brand))counter++;
+        }
+        return counter;
+    }
+    private static void displayByPrice(String maxORmin, int price){
+        System.out.format("%3s %-20s %-20s %-4s %-5s %-7s %-18s\n", "ID", "Brand", "Model", "HP","CC","Price","Color");
+        for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();) {
+            String cur=it.next();
+            Boolean lol = (maxORmin.equals("max")?price>cars.get(cur).getPrice():price<cars.get(cur).getPrice());
+            if((maxORmin.equals("max")?price>cars.get(cur).getPrice():price<cars.get(cur).getPrice()))
+                System.out.println(cur + ' ' + cars.get(cur).toString());
+        }
+    }
     private static void displayAll(){
         System.out.format("%3s %-20s %-20s %-4s %-5s %-7s %-18s\n", "ID", "Brand", "Model", "HP","CC","Price","Color");
         for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();) {
             String cur=it.next();
             System.out.println(cur + ' ' + cars.get(cur).toString());
         }
-    }
-    public static void power(String maxORmin){
-        power(maxORmin,null);
-    }
-    public static int brandCars(String brand){
-        brand=toTitleCase(brand);
-        
-        return 0;
     }
     public static String toTitleCase(String tmp){
         return tmp.substring(0,1).toUpperCase() + tmp.substring(1).toLowerCase();
