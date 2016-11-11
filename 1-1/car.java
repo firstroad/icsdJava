@@ -21,7 +21,7 @@ public class car {
     }
     @Override
     public String toString(){
-        return String.format("%-20s %-20s %-4d %-5d %-7d %-18s", brand, model, hp,cc,price,color);
+        return String.format("%-20s %-25s %-4d %-5d %-7d %-18s", brand, model, hp,cc,price,color);
     }
     @Override
     public boolean equals(Object obj) {
@@ -31,8 +31,7 @@ public class car {
             return (this.toString().equals(PersonObj.toString()));
         }
         return false;
-    }  
-
+    }
     @Override
     public int hashCode() {
         int hash = 3;
