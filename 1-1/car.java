@@ -1,3 +1,6 @@
+
+import java.util.Objects;
+
 public class car {
     private final String brand;
     private final String model;
@@ -13,7 +16,30 @@ public class car {
         this.price=price;
         this.color=color;
     }
-    public void toString(){
-        System.out.println(brand+" "+model+" "+hp+" "+cc+" "+price+" "+color);
+    @Override
+    public String toString(){
+        return brand+" "+model+" "+hp+" "+cc+" "+price+" "+color;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) return false;
+        if (obj instanceof car) {
+            car PersonObj=(car) obj;
+            if(this.toString().equals(PersonObj.toString()))
+                return true;
+        }
+        return false;
+    }  
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.brand);
+        hash = 97 * hash + Objects.hashCode(this.model);
+        hash = 97 * hash + this.hp;
+        hash = 97 * hash + this.cc;
+        hash = 97 * hash + this.price;
+        hash = 97 * hash + Objects.hashCode(this.color);
+        return hash;
     }
 }
