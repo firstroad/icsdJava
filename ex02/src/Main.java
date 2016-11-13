@@ -71,7 +71,7 @@ public class Main {
             }
             else if(option==7)  update();   //Ολοκλήρωσε όσες εργασίες έχει περάσει η ημερομηνία τους
             else if(option==8)  find(true); //Αναζήτηση ολοκληρωμένων εργασιών
-            if(option!=9) {System.out.print("Πατήστε Enter για να συνεχίσετε: ");in.nextLine();}
+            if(option!=9) {System.out.print("Πατήστε Enter για να συνεχίσετε: ");in.nextLine();}    // Λόγω όγκου του μενού θεώρησα σωστό να υπάρχει μία παύση για να μπορούμε να δούμε τα αποτελέσματα των μεθόδων
         }while(option!=9);
     }
     private static void add(){
