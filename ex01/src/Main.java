@@ -1,3 +1,4 @@
+//321/2015004 Aivatidis Prodromos 1
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -5,13 +6,13 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner in = new Scanner(System.in);
     private static final HashMap <String,car> cars = new HashMap <>();
     public static void main(String[] args) throws IOException {
-        Scanner in = new Scanner(System.in);
         int option;
         do{
             System.out.print("******************************\n*Σύστημα Διαχείρισης CarDealer*\n******************************\n0->Εμφάνιση όλων των αυτοκινήτων\n1->Προσθήκη αυτοκινήτου\n2->Διαγραφή αυτοκινήτου\n3->Αναζήτηση αυτοκινήτου\n4->Εμφάνιση κατασκευαστών\n5->Εμφάνιση αυτοκινήτου με τη μεγαλύτερη ιπποδύναμη\n6->Εμφάνιση αυτοκινήτου με τη μικρότερη ιπποδύναμη\n7->Εμφάνιση αυτοκινήτου με τη μεγαλύτερη ιπποδύναμη συγκεκριμένου κατασκευαστή\n8->Εμφάνιση αυτοκινήτου με τη μικρότερη ιπποδύναμη συγκεκριμένου κατασκευαστή\n9->Πλήθος αυτοκινήτων συγκεκριμένου κατασκευαστή\n10->Εμφάνιση αυτοκινήτων φθηνότερα από συγκεκριμένη τιμή\n11->Εμφάνιση αυτοκινήτων ακριβότερα από συγκεκριμένη τιμή\n12->Τερματισμός Λειτουργίας\nΕισάγετε τον αριθμό της επιλογής σας και πατήστε Enter: ");
-            option = in.nextInt();
+            option = in.nextInt();in.nextLine();
             if(option!=1  && option!=12 && cars.isEmpty()) System.out.println("Δεν υπάρχουν αυτοκίνητα");
             else if(option==0)  displayAll();
             else if(option==1)  add();
@@ -29,14 +30,13 @@ public class Main {
         }while(option!=12);
     }
     private static void add(){
-        Scanner in = new Scanner(System.in);
         System.out.print("Εισάγετε εταιρεία κατασκευής: ");
         String brand = in.nextLine();
         System.out.print("Εισάγετε μοντέλο: ");
         String model = in.nextLine();
         System.out.print("Εισάγετε ιπποδύναμη σε άλογα (hp): ");
         int hp = in.nextInt();
-        System.out.print("Εισάγετε χωρητκότητα σε κυβικά εκατοστά(cc): ");
+        System.out.print("Εισάγετε χωρητικότητα σε κυβικά εκατοστά(cc): ");
         int cc = in.nextInt();
         System.out.print("Εισάγετε κόστος σε ευρώ(€): ");
         int price = in.nextInt();
@@ -54,7 +54,6 @@ public class Main {
         System.out.println(randomCode + ' ' + cars.get(randomCode).toString());
     }
     private static void del(){
-        Scanner in = new Scanner(System.in);
         System.out.print("Εισάγετε αριθμό προς διαγραφή: ");
         String tmp = in.nextLine();
         if(cars.remove(tmp)!=null)
@@ -62,7 +61,6 @@ public class Main {
         else System.out.println("Δεν υπάρχει αυτοκίνητο με ID "+tmp);
     }
     private static void search(){
-        Scanner in = new Scanner(System.in);
         System.out.print("Εισάγετε αριθμό προς αναζήτηση: ");
         String tmp = in.nextLine();
         if(cars.get(tmp)!=null){
@@ -75,20 +73,17 @@ public class Main {
         HashSet <String> tmp = new HashSet <> ();
         for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();)
             tmp.add(cars.get(it.next()).getBrand());
-        for(String str: tmp)
-            System.out.println(str);
+        tmp.forEach(System.out::println);
     }
     private static void power(int maxORmin, int byBrand){
         int max=0,min=9999;
         String maxID="", minID="";
-        String brand=" ";
+        String brand="";
         if(byBrand==1){
-            Scanner in = new Scanner(System.in);
             System.out.print("Εισάγεται κατασκευαστή: ");
             brand = toTitleCase(in.nextLine());
         }
-        for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();) {
-            String tmp = it.next();
+        for (String tmp : cars.keySet()) {
             if( cars.get(tmp).getBrand().equals(brand) || byBrand==0 ){
                 max = Math.max( cars.get(tmp).getHP() , max);
                 maxID = ( max==cars.get(tmp).getHP() ) ? tmp : maxID;
@@ -98,32 +93,28 @@ public class Main {
         }
         System.out.println("Το αυτοκίνητο με τη "+((maxORmin==1)?"μεγαλύτερη":"μικρότερη")+" ιπποδύναμη είναι:");
         tabTitle();
-        System.out.println(((maxORmin==1)?maxID:minID)+' '+ cars.get((maxORmin==1)?maxID:minID).toString());
+        System.out.println(((maxORmin==1)?maxID:minID)+' '+ cars.get((maxORmin==1)?maxID:minID));
     }
     public static int carsOf(){
-        Scanner in = new Scanner(System.in);
         System.out.print("Εισάγεται κατασκευαστή και πατήστε Enter: ");
         String brand = toTitleCase(in.nextLine());
         int counter=0;
-        for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();)
-            if(cars.get(it.next()).getBrand().equals(brand))counter++;
+        for (String cur : cars.keySet())
+            if(cars.get(cur).getBrand().equals(brand))counter++;
         return counter;
     }
     private static void displayByPrice(int maxORmin){
-        Scanner in = new Scanner(System.in);
         System.out.print("Εισάγετε τιμή και πατήστε Enter: ");
         int price = in.nextInt();
         tabTitle();
-        for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();) {
-            String cur=it.next();
+        for (String cur : cars.keySet()) {
             if( maxORmin==1 ? cars.get(cur).getPrice() > price : cars.get(cur).getPrice() < price )
                 System.out.println(cur + ' ' + cars.get(cur).toString());
         }
     }
     private static void displayAll(){
         tabTitle();
-        for (Iterator<String> it = cars.keySet().iterator(); it.hasNext();) {
-            String cur=it.next();
+        for (String cur : cars.keySet()) {
             System.out.println(cur + ' ' + cars.get(cur).toString());
         }
     }

@@ -1,5 +1,4 @@
-import java.util.Objects;
-
+//321/2015004 Aivatidis Prodromos 1
 public class car {
     private final String brand;
     private final String model;
@@ -22,25 +21,5 @@ public class car {
     @Override
     public String toString(){
         return String.format("%-20s %-25s %-4d %-5d %-7d %-18s", brand, model, hp,cc,price,color);
-    }
-    @Override
-    public boolean equals(Object obj) {
-        if(obj == null) return false;
-        if (obj instanceof car) {
-            car PersonObj=(car) obj;
-            return (this.toString().equals(PersonObj.toString()));
-        }
-        return false;
-    }
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.brand);
-        hash = 97 * hash + Objects.hashCode(this.model);
-        hash = 97 * hash + this.hp;
-        hash = 97 * hash + this.cc;
-        hash = 97 * hash + this.price;
-        hash = 97 * hash + Objects.hashCode(this.color);
-        return hash;
     }
 }
