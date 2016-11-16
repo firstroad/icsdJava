@@ -1,38 +1,37 @@
-//321/2015004 Aivatidis Prodromos 3
-import java.util.ArrayList; //Κλήση κατάλληλων βιβλιοθηκών, για τα γράμματα
-import java.util.HashMap;   //για δημιουργία της δομής μας hashmap για τις λέξεις
-import java.util.Iterator;  //για χρήση iterator
+import java.util.ArrayList; 
+import java.util.HashMap;   
+import java.util.Iterator;  
 
 public final class round {
-    private HashMap <String,String> words = new HashMap<>();    //Αποθήκευση 3 λέξεων του γύρου
-    private ArrayList <Character> letters = new ArrayList<>();  //Αποθήκευση των γρμμάτων που εμφανίζονται
-    private int[] found= new int[3];    //Αν βρέθηκε μία λέξεη γίνεται 1 το κατάλληλο κελί
+    private HashMap <String,String> words = new HashMap<>();    
+    private ArrayList <Character> letters = new ArrayList<>();  
+    private int[] found= new int[3];    
     int difficulty;
-    int number; //αιρθμός γύρου
+    int number; 
     int tries;
     public int getTries(){ return tries; }
-    public boolean isNotDone(){ //Αν ο πίνακας found είναι γεμάτος με άσσους τότε έχει ολοκληρωθεί ο γύρος
+    public boolean isNotDone(){ 
         return !(found[0]==1 && found[1]==1 && found[2]==1);
     }
-    public int triesMinus(){    //Μείωση προσπαθειών
+    public int triesMinus(){    
         return --tries;
     }
-    public void showLetters(){  //Εμφάνιση γραμμάτων που έμειναν με χρήση iterator
+    public void showLetters(){  
         System.out.println();
         Iterator<Character> itr = letters.iterator();
         while(itr.hasNext()) System.out.print(itr.next().toString()+" ");
         System.out.println();
     }
-    public round(int number, int difficulty){   //Κλήση constructor
-        this.number=number; //Κρατάμε τον αριθμό του γύρου
-        this.tries=6;       //Αρχικοποιούμε τον αριθμό προσπαθειών με 6
+    public round(int number, int difficulty){   
+        this.number=number; 
+        this.tries=6;       
         this.difficulty=difficulty;
-        this.found = new int[]{0,0,0};  //Αρχικοποιούμε τον πίνακα με 0
+        this.found = new int[]{0,0,0};  
         System.out.println("\nΓύρος παιχνιδιού: "+number);
-        for(int i=0;i<3;i++){   //Για να κρατήσουμε 3 λέξεις για τον γύρο
-            for (String tmp : Main.words.keySet()) {    //Προσπαελάσουμε το hashmap με όλες τις λέξεις
-                words.put(tmp, Main.words.get(tmp));    //και προσθέτουμε τη λέξη και το κείμενο της στο τοπικό hashmap
-                Main.words.remove(tmp);                 //Και τις διαγράφουμε από τo hashmap της main για να μην υπάρχουν σε επόμενο γύρο
+        for(int i=0;i<3;i++){   
+            for (String tmp : Main.words.keySet()) {    
+                words.put(tmp, Main.words.get(tmp));    
+                Main.words.remove(tmp);                 
                 break;
             }
         }
