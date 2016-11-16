@@ -1,48 +1,47 @@
-//321/2015004 Aivatidis Prodromos 2
-import java.time.LocalDateTime; //Προσθήκη βιβλιοθήκης για αποθήκευση ημέρας και ώρας
+import java.time.LocalDateTime; 
 
 public class task {
-    private final StringBuilder description=new StringBuilder();    //Χρήση Stringbuilder για αποδοτικότερα Strings
-    private final LocalDateTime term;   //Ημερομηνία προσθεσμίας
-    private final Main.category cat;    //Καηγορία τύπου enum αρχικοποιημένη στη Main συνάρτηση
-    private final char priority;        //Χαρακτήρας προτεραιότητας
-    private boolean done;               //Χαρακτηρισμός εκκρεμότητας ως ολοκληρωμένη
-    public StringBuilder getDescription(){ return description; }    //Απαιτούμενες set και get συναρτήσεις
+    private final StringBuilder description=new StringBuilder();    
+    private final LocalDateTime term;   
+    private final Main.category cat;    
+    private final char priority;        
+    private boolean done;               
+    public StringBuilder getDescription(){ return description; }    
     public LocalDateTime getTerm(){ return term; }
     public Main.category getCat(){ return cat; }
     public char getPriority(){ return priority; }
     public boolean getDone(){return done; }
     public void setDone(){ done=true; }
-    public task(String descr, LocalDateTime term, Main.category cat, char priority){    //Constructor 0: πλήρης
+    public task(String descr, LocalDateTime term, Main.category cat, char priority){    
         this.description.append(descr);
         this.term = term;
         this.cat = cat;
-        this.priority = Character.toUpperCase(priority);    //η προτεραιότητα σώζεται ως Κεφαλαία
-        done=(term.isBefore(LocalDateTime.now()));          //και η μεταβλητή done γίνεται true αν βάλουμε ημερομηνία πριν τη τωρινή
+        this.priority = Character.toUpperCase(priority);    
+        done=(term.isBefore(LocalDateTime.now()));          
     }
-    public task(String descr, LocalDateTime term, Main.category cat){   //Constructor 1, χωρίς προτεραιότητα
+    public task(String descr, LocalDateTime term, Main.category cat){   
         this.description.append(descr);
         this.term = term;
         this.cat = cat;
-        this.priority = 'Z';    //η προτεραιότητα αρχικοποιείται με Z, το τελευταίο γράμμα της αλφαβήτου
+        this.priority = 'Z';    
         done=(term.isBefore(LocalDateTime.now()));
     }
-    public task(String descr, LocalDateTime term, char priority){   //Constructor 2, χωρίς κατηγορία
+    public task(String descr, LocalDateTime term, char priority){   
         this.description.append(descr);
         this.term = term;
-        this.cat = Main.category.Allo;  //Η κατηγορία αρχικοποιείται με Allo
+        this.cat = Main.category.Allo;  
         this.priority = Character.toUpperCase(priority);
         done=(term.isBefore(LocalDateTime.now()));
     }
-    public task(String descr, LocalDateTime term){  //Constructor 3, χωρίς κατηγορία και χωρίς προταιρεότητα
+    public task(String descr, LocalDateTime term){  
         this.description.append(descr);
         this.term = term;
-        this.cat = Main.category.Allo;  //Η κατηγορία αρχικοποιείται με Allo
-        this.priority = 'Z';            //η προτεραιότητα αρχικοποιείται με Z
+        this.cat = Main.category.Allo;  
+        this.priority = 'Z';            
         done=(term.isBefore(LocalDateTime.now()));
     }
     @Override
-    public String toString(){   //Υλοποίηση της toString με StringBuilder για καλύτερη απόδοση
+    public String toString(){   
         StringBuilder tmp = new StringBuilder();
         tmp.append(' ');
         tmp.append(priority);
