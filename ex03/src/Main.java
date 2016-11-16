@@ -1,25 +1,24 @@
-//321/2015004 Aivatidis Prodromos 
-import java.util.HashMap;   //Κλήση κατάλληλων βιβλιοθηκών, για δημιουργία της δομής μας hashmap
-import java.util.Scanner;   //για ανάγνωση από το χρήστη
+import java.util.HashMap;   
+import java.util.Scanner;   
 
 public class Main {
     public static HashMap <String,String> words = new HashMap<>();
-    private static Scanner in = new Scanner(System.in);     //Δημιουργία ενός Scanner για όλες τις συναρτήσεις της Main
+    private static Scanner in = new Scanner(System.in);     
     public static void main(String[] args) {
-        handler();  //Η Main εκτελεί τη μέθοδο handler μόνο
+        handler();  
     }
     public static void handler(){
-        dictionary();   //Καλούμε τη συνάρτηση που γεμίζει το hashmap
+        dictionary();   
         System.out.println("ΚΑΛΩΣΗΡΘΑΤΕ ΣΤΟ ΠΑΙΧΝΙΔΙ «ΒΡΕΣ ΤΙΣ ΛΕΞΕΙΣ»");
         System.out.print("Εισάγετε το όνομα σας: ");
         String name = in.nextLine();
         System.out.print("Επιλέξτε αριθμό επιπέδου δυσκολίας ( 0-Εύκολο 1-Δύσκολο ) : ");
-        int difficulty = in.nextInt(); in.nextLine();   //Μετά από κάθε nextInt έχω προσθέσει nextLine για να κρατάει το Enter που πατιέται αλλιώς δημιουργεί πρόβλημα στις επόμενες nextLine
-        play(1, difficulty);    //Κλήση μεθόδου που χειρίζεται το πρώτο γύρο
+        int difficulty = in.nextInt(); in.nextLine();   
+        play(1, difficulty);    
         System.out.println("Ευχαριστούμε που παίξατε");
     }
     private static void play(int round, int difficulty){
-        round curRound = new round(round,difficulty);   //Δημιουργία αντικειμένου γύρου
+        round curRound = new round(round,difficulty);   
         while(curRound.isNotDone() && curRound.getTries()>0){
             System.out.println("Επιλέξτε λέξη που θέλετε να μαντέψετε: ");
             int word = in.nextInt(); in.nextLine();
